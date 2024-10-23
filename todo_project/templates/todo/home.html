@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "todo/base.html" %}
+{%load crispy_forms_tags %} 
+
+{% block title_block %}
+  <title>{{title}}</title>
+{% endblock %}
+
+
+{% block body_block %}
+  <div class="row">
+    <div class="col-md-8">
+
+    </div>
+    <div class="col-md-1">
+      <!-- Space for seprate -->
+    </div>
+    <div class="col-md-3">
+      {{form|crispy}}
+      {% csrf_token %}
+      <input type="submit" value="Add TODO List" class="btn btn-primary">
+    </div>
+  </div>
+{% endblock  %}
