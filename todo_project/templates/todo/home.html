@@ -16,18 +16,23 @@
       {% for list in lists %}
       <div class="card custom-card">
         <div class="card-header">
-          <h4>{{list.title}}</h4>
+          <div class="row">
+            <div class="col-8">
+              <h4>{{list.title}}</h4>
+            </div>
+            <div class="col-4">
+              <span>Created on {{list.date}}</span>
+            </div>
+          </div>           
         </div>
         <div class="card-body">
           {{list.details}}
         </div>
-        <div class="card-footer">
-          {{list.date}}
+        <div class="card-footer">           
           <form action="{%url 'del' list.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="Delete" class="btn btn-danger">
-            
-          </form>          
+            <input type="submit" value="Delete" class="btn btn-danger">            
+          </form>  
         </div>
       </div>
       {% endfor %}
