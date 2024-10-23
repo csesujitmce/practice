@@ -9,16 +9,39 @@
 
 {% block body_block %}
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-7">
+      {% for list in lists %}
+      <div class="card custom-card">
+        <div class="card-header">
+          <h4>{{list.title}}</h4>
+        </div>
+        <div class="card-body">
+          {{list.details}}
+        </div>
+        <div class="card-footer">
+          {{list.date}}
+          <form action="{%url 'del' list.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="btn btn-danger">
+            
+          </form>          
+        </div>
+      </div>
+      {% endfor %}
 
     </div>
     <div class="col-md-1">
       <!-- Space for seprate -->
     </div>
     <div class="col-md-3">
-      {{form|crispy}}
-      {% csrf_token %}
-      <input type="submit" value="Add TODO List" class="btn btn-primary">
+      <form action="" method="post" class="submit_form">
+        {{form|crispy}}
+        {% csrf_token %}
+        <input type="submit" value="Add TODO List" class="btn btn-primary">
+      </form>
     </div>
   </div>
 {% endblock  %}
